@@ -6,7 +6,6 @@ import asyncio
 
 import numpy as np
 
-
 class Asteroids:
     def __init__(self):
         self.vertices = self.genSquareVertices()
@@ -43,7 +42,6 @@ class Asteroids:
         y = (vertices[0][1] - vertices[3][1])/2
         z = 0
         return [x, y, z]
-
 
 class Player:
     def __init__(self):
@@ -93,7 +91,6 @@ class Player:
 
 
 async def collision(player, asteroid):
-    # print(player.triangleVertices_2[2][0] + player.default_position[0], asteroid.vertices[0][1] + asteroid.default_position[1], asteroid.vertices[2][1] + asteroid.default_position[1])
     if (
             asteroid.vertices[1][0]*asteroid.scale <= player.triangleVertices_2[2][0] + player.default_position[0] <=
             asteroid.vertices[0][0]*asteroid.scale and
@@ -130,7 +127,6 @@ def draw_text(position, text_string, size=50, from_center=False, color=(255, 255
     glDrawPixels(ix, iy, GL_RGBA, GL_UNSIGNED_BYTE, img_data)
     glDisable(GL_BLEND)
 
-
 async def main():
     count_fall = 0
     count_new = 0
@@ -140,12 +136,9 @@ async def main():
     score = 0
 
     width, height = 1200, 800
-    window = createScreen(width, height)
+    createScreen(width, height)
 
     gluPerspective(90, (width / height), 0.1, 50.0)
-
-    bg = pg.image.load("bg.jpg")
-    bg = pg.transform.scale(bg, (width, height))
 
     glTranslatef(0.0, 0.0, -5)
 
@@ -158,8 +151,6 @@ async def main():
     pg.mixer.music.play()
 
     while True:
-        window.fill((0, 0, 0))
-        window.blit(bg, (0, 0))
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 pg.quit()
